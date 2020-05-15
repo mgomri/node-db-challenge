@@ -19,6 +19,7 @@
   "homepage": "https://github.com/mgomri/node-db-challenge#readme",
   "dependencies": {
     "knex": "^0.21.1",
+    "knex-cleaner": "^1.3.0",
     "sqlite3": "^4.2.0"
   }
 }

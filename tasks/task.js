@@ -5,7 +5,9 @@ const db = knex(config.development);
 module.exports = {
     add,
     find,
-    findById,  
+    findById,
+    update,
+    remove  
 };
 
 

@@ -49,8 +49,8 @@ router.put('/:id', (req, res) => {
     const changes = req.body;
   
     Tasks.findById(id)
-    .then(pro => {
-      if (pro) {
+    .then(tsk => {
+      if (tsk) {
         Tasks.update(changes, id)
         .then(updatedTask => {
           res.json(updatedTask);

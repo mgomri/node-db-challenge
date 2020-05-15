@@ -22,4 +22,17 @@ function find () {
 function findById(id){
     return db('tasks')
         .where({ id }).first();
-}
+};
+
+
+function update(changes, id){
+    return db('tasks')
+    .where('id', Number(id))
+    .update(changes);
+};
+
+function remove (id){
+    return db('tasks')
+    .where('id', Number(id))
+    .del();
+};

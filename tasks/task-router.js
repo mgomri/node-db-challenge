@@ -14,6 +14,8 @@ router.post('/', (req, res) => {
       res.status(500).json({ message: 'Failed to create new task' });
     });
   });
+
+
 router.get('/', (req, res) => {
     
     Tasks.find()
@@ -40,5 +42,42 @@ router.get('/:id', (req, res) => {
             res.status(500).json({message: `Failed to retrieve tasks ${id}`})
         })
 });
+
+
+router.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const changes = req.body;
+  
+    Tasks.findById(id)
+    .then(pro => {
+      if (pro) {
+        Tasks.update(changes, id)
+        .then(updatedTask => {
+          res.json(updatedTask);
+        });
+      } else {
+        res.status(404).json({ message: 'Could not find task with given id' });
+      }
+    })
+    .catch (err => {
+      res.status(500).json({ message: 'Failed to update task' });
+    });
+  });
+  
+  router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+  
+    Tasks.remove(id)
+    .then(deleted => {
+      if (deleted) {
+        res.json({ removed: deleted });
+      } else {
+        res.status(404).json({ message: 'Could not find task with given id' });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ message: 'Failed to delete task' });
+    });
+  });
 
 module.exports = router;
